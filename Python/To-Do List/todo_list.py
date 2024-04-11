@@ -5,8 +5,9 @@ def show_menu():
     print("To-Do List Application")
     print("1. Add Task")
     print("2. View Tasks")
-    print("3. Delete Task")
-    print("4. Exit")
+    print("3. Update Task")
+    print("4. Delete Task")
+    print("5. Exit")
 
 def add_task():
     task = input("Enter a new task: ")
@@ -21,6 +22,16 @@ def view_tasks():
         for index, task in enumerate(tasks, start=1):
             print(f"{index}. {task}")
 
+def update_task():
+    view_tasks()
+    index = int(input("Enter the index of the task to update: "))
+    if index >= 1 and index <= len(tasks):
+        new_task = input("Enter the new task: ")
+        tasks[index - 1] = new_task
+        print("Task updated successfully!")
+    else:
+        print("Invalid index!")
+
 def delete_task():
     view_tasks()
     index = int(input("Enter the index of the task to delete: "))
@@ -33,15 +44,17 @@ def delete_task():
 def main():
     while True:
         show_menu()
-        choice = input("Enter your choice (1-4): ")
+        choice = input("Enter your choice (1-5): ")
 
         if choice == "1":
             add_task()
         elif choice == "2":
             view_tasks()
         elif choice == "3":
-            delete_task()
+            update_task()
         elif choice == "4":
+            delete_task()
+        elif choice == "5":
             print("Goodbye!")
             break
         else:
